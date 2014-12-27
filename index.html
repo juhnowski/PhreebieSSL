@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Phreebie | CRM</title>
+	<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">    
+    <link rel="stylesheet" href="css/bootstrap.css"> 	
+    <script src="js/jquery.min.js"></script>
+	<script src="js/jquery.jqtransform.js"></script>
+
+
+<script src="js/cufon-yui.js" type="text/javascript"></script>
+<script src="js/source-sans-pro.cufonfonts.js" type="text/javascript"></script>
+<script type="text/javascript">
+Cufon.replace('.source-sans-pro', { fontFamily: 'Source Sans Pro', hover: true }); 
+Cufon.replace('.source-sans-pro-extralight', { fontFamily: 'Source Sans Pro ExtraLight', hover: true }); 
+Cufon.replace('.source-sans-pro-light', { fontFamily: 'Source Sans Pro Light', hover: true }); 
+Cufon.replace('.source-sans-pro-black', { fontFamily: 'Source Sans Pro Black', hover: true }); 
+Cufon.replace('.source-sans-pro-semibold-italic', { fontFamily: 'Source Sans Pro Semibold Italic', hover: true }); 
+Cufon.replace('.source-sans-pro-semibold', { fontFamily: 'Source Sans Pro Semibold', hover: true }); 
+Cufon.replace('.source-sans-pro-light-italic', { fontFamily: 'Source Sans Pro Light Italic', hover: true }); 
+Cufon.replace('.source-sans-pro-bold-italic', { fontFamily: 'Source Sans Pro Bold Italic', hover: true }); 
+Cufon.replace('.source-sans-pro-bold', { fontFamily: 'Source Sans Pro Bold', hover: true }); 
+Cufon.replace('.source-sans-pro-italic', { fontFamily: 'Source Sans Pro Italic', hover: true }); 
+Cufon.replace('.source-sans-pro-extralight-italic', { fontFamily: 'Source Sans Pro ExtraLight Italic', hover: true }); 
+Cufon.replace('.source-sans-pro-black-italic', { fontFamily: 'Source Sans Pro Black Italic', hover: true }); 
+</script>
+
+</head>
+
+<body>
+<style type="text/css">
+  .done {
+    text-decoration: line-through;
+  }
+</style>
+ 
+ 
+ <body id="page3">
+<div class="body1">
+  <div class="body2">
+    <div class="main">
+      <!-- header -->
+      <header>
+        <div class="wrapper">
+          <ul id="icons">
+            <li><a href="http://www.phreebie.net/index.html"><img src="http://www.phreebie.net/images/icon1.gif" alt=""></a></li>
+            <li><a href="http://www.phreebie.net"><img src="http://www.phreebie.net/images/icon2.gif" alt=""></a></li>
+            <li><a href="http://www.phreebie.net/contacts.html"><img src="http://www.phreebie.net/images/icon3.gif" alt=""></a></li>
+          </ul>
+          <span class="call"><a href="http://www.phreebie.net/contacts.html">Contacts</a></div>
+        <h5><a href="http://www.phreebie.net/index.html" id="logo">Phreebie</a></h5>
+		<span id="slogan1">Change<span>Request</span><span>Management</span></span>        
+        <div class="wrapper">
+          <nav>
+            <ul id="menu">
+              <li class="first"><a href="http://www.phreebie.net/index.html">Home</a></li>
+              <li><a href="http://www.phreebie.net/tv.html">TV</a></li>
+              <li><a href="http://www.phreebie.net/hosting.html">Hosting</a></li>
+              <li><a href="http://www.phreebie.net/features.html">Features</a></li>
+              <li><a href="http://www.phreebie.net/experiments.html">Experiments</a></li>
+              <li><a href="http://www.phreebie.net/ideas.html">Project</a></li>
+              <li id="menu_active"><a href="http://www.phreebie.net/support.html">Cabinet</a></li>
+            </ul>
+          </nav>
+        </div>        
+        </header>
+      <!-- / header -->
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <!-- content -->
+  <section id="content">
+    <div class="wrapper">
+        
+        <article class="col1">
+        <h3>Demo version</h3>
+        <p class="pad_bot1">Please feel free to testing the system. Download this page on both computer and mobile device, make sure the system usability and speed.
+        Record fields can be customized according to the needs of the customer project.
+        In the simplest case, this system can be used as a messenger.<br>
+        The system operates on SSL protocol, which ensures the credibility of the source and the sender, and the message is encrypted customer's unique algorithm, which is the second level of security</p>
+      </article>
+
+      <article class="col1">
+ <!-- 
+ __________________________________________ chat area ____________________________________
+ !-->
+
+		<div class="container" id="todos">
+		  <ul class="todos list-unstyled"></ul>
+		  <form role="form" class="create-todo">
+		    <div class="form-group">
+		      <input type="text" class="form-control" name="description" placeholder="Describe the problem here" style="width:100%">
+		    </div>
+		    <button type="submit" class="btn btn-info col-md-12">Send CR</button>
+		  </form>
+		</div>
+ <!-- 
+ __________________________________________ chat area ____________________________________
+ !-->
+
+      </article>
+ 
+     </div>
+  </section>
+</div>
+<div class="main">
+  <!-- / footer -->
+  <footer>Copyright &copy; <a href="#">Phreebie LLC</a> All Rights Reserved<br>
+</footer>
+  <!-- / footer -->
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect();
+  var el = $('#todos');
+ 
+  var app = {
+    addTodo: function(todo) {
+      var html = '<li class="page-header checkbox" data-id="' + todo.id + '">' +
+            '<label><input type="checkbox" name="done">' +
+            todo.description +
+            '</label><a href="javascript://" class="pull-right delete">' +
+            '<span class="glyphicon glyphicon-remove"></span>' +
+            '</a></li>';
+ 
+      el.find('.todos').append(html);
+      app.updateTodo(todo);
+    },
+    removeTodo: function(todo) {
+      el.find('[data-id="' + todo.id + '"]').remove();
+    },
+    updateTodo: function(todo) {
+      var element = el.find('[data-id="' + todo.id + '"]');
+      var checkbox = element.find('[name="done"]').removeAttr('disabled');
+ 
+      if(todo.done) {
+        element.addClass('done');
+        checkbox.prop('checked', true);
+      } else {
+        element.removeClass('done');
+        checkbox.prop('checked', false);
+      }
+    },
+    errorHandler: function(error) {
+      if(error) {
+        alert(error.message);
+      }
+    }
+  };
+ 
+  el.on('submit', 'form', function (ev) {
+    var field = $(this).find('[name="description"]');
+ 
+    socket.emit('todos::create', {
+      description: field.val()
+    }, {}, app.errorHandler);
+ 
+    field.val('');
+    ev.preventDefault();
+  }).on('click', '.delete', function (ev) {
+    var id = $(this).parents('li').data('id');
+    socket.emit('todos::remove', id, {}, app.errorHandler);
+    ev.preventDefault();
+  }).on('click', '[name="done"]', function(ev) {
+    var id = $(this).parents('li').data('id');
+ 
+    $(this).attr('disabled', 'disabled');
+ 
+    socket.emit('todos::update', id, {
+      done: $(this).is(':checked')
+    }, {}, app.errorHandler);
+  });
+ 
+  socket.on('todos updated', app.updateTodo);
+  socket.on('todos removed', app.removeTodo);
+  socket.on('todos created', app.addTodo);
+  socket.emit('todos::find', {}, function (error, todos) {
+    todos.forEach(app.addTodo);
+  });
+</script>
+<script>Cufon.now();</script>
+
+</body>
+</html> 
